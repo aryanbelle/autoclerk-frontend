@@ -13,7 +13,7 @@ import {
   Bot,
   User,
 } from '@carbon/icons-react';
-import { Send as SendIcon, Link as LinkIcon, Sparkle as SparkleIcon, HelpCircle as HelpIcon, ThumbsUp, ThumbsDown, Copy, RotateCcw, MoreHorizontal } from 'lucide-react';
+import { Send as SendIcon, Link as LinkIcon, Sparkle as SparkleIcon, HelpCircle as HelpIcon, ThumbsUp, ThumbsDown, Copy, RotateCcw, MoreHorizontal, ChevronDown } from 'lucide-react';
 import { chatAPI, type ChatMessage as ApiChatMessage } from '@/services/api';
 import ReactMarkdown from 'react-markdown';
 import { useChatSession, Message } from '@/contexts/ChatSessionContext';
@@ -151,12 +151,12 @@ const ChatInterface = ({ sessionId }: ChatInterfaceProps) => {
   };
 
   return (
-    <div className="flex flex-col h-full text-foreground rounded-lg chat-interface-override">
+    <div className="flex flex-col h-full text-[#E0E0E0] rounded-lg chat-interface-override bg-[#111111]">
       {/* Header */}
       
       <div className="flex flex-col h-full">
         {/* Messages Area */}
-        <div className="h-[calc(100vh-200px)] overflow-y-auto space-y-4 p-6 relative">
+        <div className="h-[calc(100vh-200px)] overflow-y-auto space-y-4 p-6 relative bg-[#111111]">
           {messages.map((message) => (
             <div
               key={message.id}
@@ -166,35 +166,35 @@ const ChatInterface = ({ sessionId }: ChatInterfaceProps) => {
             >
               <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
                 message.sender === 'ai' 
-                  ? 'bg-primary text-primary-foreground' 
-                  : 'bg-primary text-primary-foreground'
+                  ? 'bg-[#1C1C1C] text-[#E0E0E0] border border-[#2A2A2A]' 
+                  : 'bg-[#1C1C1C] text-[#E0E0E0] border border-[#2A2A2A]'
               }`}>
                 {message.sender === 'ai' ? <Bot size={18} /> : <User size={18} />}
               </div>
               
               {message.sender === 'user' ? (
-                <div className="max-w-2xl p-4 rounded-lg shadow-md border border-border" style={{backgroundColor: '#0f62fe', color: '#ffffff'}}>
+                <div className="max-w-2xl p-4 rounded-lg shadow-md border border-[#2A2A2A]" style={{backgroundColor: '#1A1A1A', color: '#E5E5E5'}}>
                   <p className="whitespace-pre-wrap">{message.content}</p>
                 </div>
               ) : (
                 <div className="max-w-2xl">
-                  <div className="p-4 prose prose-invert">
+                  <div className="p-4 prose prose-invert bg-[#1A1A1A] border border-[#2A2A2A] rounded-lg shadow-md">
                     <ReactMarkdown>{message.content}</ReactMarkdown>
                   </div>
                   <div className="flex items-center space-x-2 mt-2 ml-4">
-                    <button className="text-muted-foreground hover:text-foreground p-1 rounded">
+                    <button className="text-[#7A7A7A] hover:text-[#E0E0E0] p-1 rounded hover:bg-[#222222] transition-all duration-300">
                       <ThumbsUp size={16} />
                     </button>
-                    <button className="text-muted-foreground hover:text-foreground p-1 rounded">
+                    <button className="text-[#7A7A7A] hover:text-[#E0E0E0] p-1 rounded hover:bg-[#222222] transition-all duration-300">
                       <ThumbsDown size={16} />
                     </button>
-                    <button className="text-muted-foreground hover:text-foreground p-1 rounded">
+                    <button className="text-[#7A7A7A] hover:text-[#E0E0E0] p-1 rounded hover:bg-[#222222] transition-all duration-300">
                       <Copy size={16} />
                     </button>
-                    <button className="text-muted-foreground hover:text-foreground p-1 rounded">
+                    <button className="text-[#7A7A7A] hover:text-[#E0E0E0] p-1 rounded hover:bg-[#222222] transition-all duration-300">
                       <RotateCcw size={16} />
                     </button>
-                    <button className="text-muted-foreground hover:text-foreground p-1 rounded">
+                    <button className="text-[#7A7A7A] hover:text-[#E0E0E0] p-1 rounded hover:bg-[#222222] transition-all duration-300">
                       <MoreHorizontal size={16} />
                     </button>
                   </div>
@@ -206,11 +206,11 @@ const ChatInterface = ({ sessionId }: ChatInterfaceProps) => {
           {/* Typing Effect */}
           {typingMessage && (
             <div className="flex items-start space-x-3">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
+              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#1C1C1C] text-[#E0E0E0] border border-[#2A2A2A] flex items-center justify-center">
                 <Bot size={18} />
               </div>
               <div className="max-w-2xl">
-                <div className="p-4 prose prose-invert">
+                <div className="p-4 prose prose-invert bg-[#1A1A1A] border border-[#2A2A2A] rounded-lg shadow-md">
                   <ReactMarkdown>{typingMessage.content}</ReactMarkdown>
                   <span className="animate-pulse">|</span>
                 </div>
@@ -221,13 +221,13 @@ const ChatInterface = ({ sessionId }: ChatInterfaceProps) => {
           {/* Loading indicator at the bottom */}
           {isLoading && !typingMessage && (
             <div className="flex items-start space-x-3">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
+              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#1C1C1C] text-[#E0E0E0] border border-[#2A2A2A] flex items-center justify-center">
                 <Bot size={18} />
               </div>
               <div className="max-w-2xl">
-                <div className="p-4 flex items-center">
+                <div className="p-4 flex items-center bg-[#1A1A1A] border border-[#2A2A2A] rounded-lg shadow-md">
                   <Loading withOverlay={false} small />
-                  <span className="ml-2 text-sm">Generating response...</span>
+                  <span className="ml-2 text-sm text-[#A3A3A3]">Generating response...</span>
                 </div>
               </div>
             </div>
@@ -239,48 +239,53 @@ const ChatInterface = ({ sessionId }: ChatInterfaceProps) => {
 
         {/* Input Area */}
         <div className="flex-shrink-0 mt-4 px-8 pb-6">
-          <div className="max-w-4xl mx-auto w-full rounded-lg p-4 bg-secondary/20 border-secondary-foreground shadow-lg relative min-h-[120px]">
-            <textarea
-              id="chat-input"
-              placeholder="Type your idea and we'll build it together..."
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={handleKeyPress}
-              className="w-full h-full !bg-transparent !text-foreground !border-none focus:!ring-0 focus:!border-none focus:outline-none resize-none overflow-hidden pl-2 pr-12 pt-2 pb-8"
-              rows={1}
-            />
+          <div className="max-w-4xl mx-auto w-full border border-[#2A2A2A] rounded-3xl bg-[#1A1A1A] shadow-lg shadow-[rgba(0,0,0,0.5)] backdrop-blur-sm relative overflow-hidden glow-container">
+            {/* Subtle inner glow effect */}
+            <div className="absolute inset-0 opacity-70 pointer-events-none"></div>
+            {/* Input area */}
+            <div className="relative bg-[#1d1d1d]">
+              {/* Document type selector */}
+            <div className="flex items-center border-b border-[#2A2A2A] bg-[#1d1d1d]">
+              <div className="flex items-center gap-2 px-4 py-2.5 text-sm text-[#E0E0E0] hover:bg-[#1F1F1F] cursor-pointer transition-colors">
+                <span className="font-medium">Document Analysis</span>
+                <ChevronDown size={14} className="text-[#888888]" />
+              </div>
+            </div>
+            {/* Input area */}
+            <div className="relative bg-[#1d1d1d]">
+              <textarea
+                id="chat-input"
+                placeholder="Type your idea and we'll build it together..."
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={handleKeyPress}
+                className="w-full h-full bg-transparent text-[#E5E5E5] border-none focus:ring-0 focus:outline-none resize-none overflow-hidden p-4 placeholder-[#6B6B6B]"
+                rows={2}
+              />
+              
+              {/* Action buttons */}
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-3">
+                <button
+                  onClick={handleSendMessage}
+                  disabled={!inputValue.trim() || isLoading}
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-[hsl(215,100%,50%)] text-white shadow-lg shadow-[rgba(42,42,42,0.3)] hover:bg-[hsl(215,100%,45%)] hover:shadow-[rgba(42,42,42,0.5)] transition-all duration-300 ease-in-out"
+                >
+                  <SendIcon size={18} />
+                </button>
+              </div>
+            </div>
             
-            <IconButton
-              onClick={handleSendMessage}
-              disabled={!inputValue.trim() || isLoading}
-              renderIcon={SendIcon} // Using SendIcon from Lucide React
-              // iconDescription="Send message"
-              tooltipPosition="none"
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-0 w-12 h-2 flex items-center justify-center rounded-full z-10"
-            />
-            
-            <div className="flex items-center space-x-3 absolute bottom-2 left-3">
-              <button
-                className="text-muted-foreground hover:text-foreground hover:bg-secondary/50 p-0 w-6 h-6 flex items-center justify-center rounded-full"
-              >
-                <LinkIcon size={16} />
-              </button>
-              <button
-                className="text-muted-foreground hover:text-foreground hover:bg-secondary/50 p-0 w-6 h-6 flex items-center justify-center rounded-full"
-              >
-                <SparkleIcon size={16} />
-              </button>
-              <button
-                className="text-muted-foreground hover:text-foreground hover:bg-secondary/50 p-0 w-6 h-6 flex items-center justify-center rounded-full"
-              >
-                <HelpIcon size={16} />
-              </button>
+            {/* Helper text and character count */}
+            <div className="flex justify-between bg-[#1d1d1d] items-center px-4 py-2 text-xs text-[#7A7A7A]">
+              <span className="italic">Press Enter to send, Shift+Enter for new line</span>
+              <span>{inputValue.length}/2000</span>
             </div>
           </div>
         </div>
       </div>
     </div>
+    </div>
   );
-};
+}
 
 export default ChatInterface;

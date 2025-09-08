@@ -8,29 +8,29 @@
 @layer base {
   :root {
     /* Space Theme Colors - Dark by Default */
-    --space-black: 220 25% 5%;
-    --space-dark: 222 20% 8%;
-    --space-surface: 225 15% 12%;
-    --space-surface-hover: 225 15% 16%;
-    --space-border: 220 10% 25%;
-    --space-text-primary: 210 15% 95%;
-    --space-text-secondary: 210 10% 75%;
-    --space-text-muted: 210 8% 55%;
+    --space-black: 0 0% 5%;
+    --space-dark: 0 0% 8%;
+    --space-surface: 0 0% 12%;
+    --space-surface-hover: 0 0% 16%;
+    --space-border: 0 0% 25%;
+    --space-text-primary: 0 0% 95%;
+    --space-text-secondary: 0 0% 75%;
+    --space-text-muted: 0 0% 55%;
     
-    /* Space Accent Colors - More vibrant blue */
-    --space-blue: 220 95% 60%; /* More vibrant space blue */
-    --space-blue-hover: 220 100% 65%;
-    --space-purple: 260 70% 65%;
-    --space-cyan: 190 80% 70%;
+    /* Space Accent Colors - Dark theme */
+    --space-blue: 215 100% 50%; /* Primary blue for buttons only */
+    --space-blue-hover: 215 100% 45%;
+    --space-purple: 260 60% 55%;
+    --space-cyan: 190 80% 50%;
     
-    /* Gradients for Space Effect - More vibrant blue */
-    --gradient-space: linear-gradient(135deg, hsl(220, 25%, 5%) 0%, hsl(225, 20%, 8%) 50%, hsl(230, 15%, 10%) 100%);
-    --gradient-planet: radial-gradient(ellipse at bottom, hsl(220, 95%, 60%) 0%, transparent 50%);
-    --gradient-glow: radial-gradient(circle at center, hsla(220, 95%, 60%, 0.3) 0%, transparent 70%);
+    /* Gradients for Space Effect - Dark theme */
+    --gradient-space: linear-gradient(135deg, hsl(0, 0%, 5%) 0%, hsl(0, 0%, 8%) 50%, hsl(0, 0%, 10%) 100%);
+    --gradient-planet: radial-gradient(ellipse at bottom, hsl(0, 0%, 15%) 0%, transparent 50%);
+    --gradient-glow: radial-gradient(circle at center, hsla(0, 0%, 15%, 0.3) 0%, transparent 70%);
     
-    /* Shadows - More vibrant blue */
-    --shadow-space: 0 4px 20px hsla(220, 95%, 60%, 0.2);
-    --shadow-glow: 0 0 40px hsla(220, 95%, 60%, 0.4);
+    /* Shadows - Dark theme */
+    --shadow-space: 0 4px 20px hsla(0, 0%, 0%, 0.3);
+    --shadow-glow: 0 0 40px hsla(0, 0%, 0%, 0.5);
     
     /* Animation */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -55,7 +55,7 @@
     --destructive-foreground: var(--space-text-primary);
     --border: var(--space-border);
     --input: var(--space-surface-hover);
-    --ring: var(--space-blue);
+    --ring: var(--space-border);
     --radius: 0.5rem;
   }
 
@@ -63,7 +63,7 @@
   .cds--g100 {
     --cds-ui-background: hsl(var(--space-dark));
     --cds-background: hsl(var(--space-dark));
-    --cds-interactive-01: hsl(var(--space-blue)); /* Primary interactive elements */
+    --cds-interactive-01: hsl(var(--space-blue)); /* Primary interactive elements - keep blue for buttons */
     --cds-interactive-02: hsl(var(--space-surface-hover)); /* Secondary interactive elements */
     --cds-interactive-03: hsl(var(--space-border)); /* Tertiary interactive elements (e.g., ghost buttons) */
     --cds-text-01: hsl(var(--space-text-primary)); /* Primary text */
@@ -72,7 +72,7 @@
     --cds-field-01: hsl(var(--space-surface-hover)); /* Input fields background */
     --cds-border-strong-01: hsl(var(--space-border)); /* Strong borders */
     --cds-border-subtle-01: hsl(var(--space-border)); /* Subtle borders */
-    --cds-link-01: hsl(var(--space-blue)); /* Link color */
+    --cds-link-01: hsl(var(--space-cyan)); /* Link color - changed from blue */
     --cds-icon-01: hsl(var(--space-text-primary)); /* Primary icon color */
     --cds-icon-02: hsl(var(--space-text-secondary)); /* Secondary icon color */
     --cds-ui-01: hsl(var(--space-surface)); /* Primary UI background (e.g., card) */
@@ -116,12 +116,31 @@
 
   /* Glow effects */
   .glow-blue {
-    box-shadow: var(--shadow-glow);
+    box-shadow: 0 0 40px hsla(0, 0%, 15%, 0.5);
+  }
+  
+  .glow-container {
+    box-shadow: 0 0 25px rgba(42, 42, 42, 0.25);
+    position: relative;
+  }
+  
+  .glow-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(to bottom right, rgba(42, 42, 42, 0.2), transparent, rgba(42, 42, 42, 0.2));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
   }
 
   /* Override gradient for chat interface */
   .chat-interface-override {
-    background: hsl(var(--space-dark)) !important;
+    background: #111111 !important;
   }
 
   .chat-interface-override::before {
@@ -130,7 +149,7 @@
 
   /* More aggressive override - target the root space-bg when chat interface is present */
   .space-bg:has(.chat-interface-override) {
-    background: hsl(var(--space-dark)) !important;
+    background: #111111 !important;
   }
 
   .space-bg:has(.chat-interface-override)::before {
@@ -138,7 +157,7 @@
   }
 
   .text-glow {
-    text-shadow: 0 0 20px hsla(220, 95%, 60%, 0.5);
+    text-shadow: 0 0 20px hsla(0, 0%, 40%, 0.5);
   }
 
   /* Custom scrollbar */
@@ -156,6 +175,6 @@
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--space-blue));
+    background: hsl(var(--space-border));
   }
 }

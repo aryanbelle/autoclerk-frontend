@@ -79,7 +79,7 @@ const ChatSidebar = ({ onNewChat, onClose, onSelectSession, currentSessionId }: 
   );
 
   return (
-    <div className="fixed left-0 top-0 h-screen w-64 bg-sidebar-background text-sidebar-foreground border-r border-sidebar-border z-50 flex flex-col">      
+    <div className="fixed left-0 top-0 h-screen w-64 bg-[#111111] text-[#E0E0E0] border-r border-[#2A2A2A] z-50 flex flex-col">      
       {/* Rename Modal */}
       <Modal
         open={isRenameModalOpen}
@@ -100,12 +100,12 @@ const ChatSidebar = ({ onNewChat, onClose, onSelectSession, currentSessionId }: 
         />
       </Modal>
       {/* Header */}
-      <div className="flex-shrink-0 p-4 border-b border-sidebar-border flex items-center justify-between">
+      <div className="flex-shrink-0 p-4 border-b border-[#2A2A2A] flex items-center justify-between">
         <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 rounded bg-sidebar-primary flex items-center justify-center">
-            <Chat size={20} className="text-sidebar-primary-foreground" />
+          <div className="w-8 h-8 rounded bg-[#1A1A1A] flex items-center justify-center">
+            <Chat size={20} className="text-[#E0E0E0]" />
           </div>
-          <h1 className="text-lg font-semibold text-glow">CarbonChat</h1>
+          <h1 className="text-lg font-semibold text-[#FFFFFF]">CarbonChat</h1>
         </div>
         <Button
           kind="ghost"
@@ -114,11 +114,11 @@ const ChatSidebar = ({ onNewChat, onClose, onSelectSession, currentSessionId }: 
           renderIcon={Close}
           iconDescription="Close sidebar"
           onClick={onClose}
-          className="text-muted-foreground hover:text-foreground"
+          className="text-[#7A7A7A] hover:text-[#E0E0E0]"
         />
       </div>
 
-      <SideNav isFixedNav expanded aria-label="Chat Navigation" className="flex-1 overflow-y-auto bg-sidebar-background">
+      <SideNav isFixedNav expanded aria-label="Chat Navigation" className="flex-1 overflow-y-auto bg-[#111111]">
         <SideNavItems>
           {/* New Chat */}
           <div className="p-3">
@@ -126,24 +126,24 @@ const ChatSidebar = ({ onNewChat, onClose, onSelectSession, currentSessionId }: 
               onClick={onNewChat}
               renderIcon={Add}
               className="w-full justify-start"
-              style={{backgroundColor: '#0f62fe', color: '#ffffff'}}
+              style={{backgroundColor: 'hsl(215, 100%, 50%)', color: '#ffffff'}}
             >
               New Chat
             </Button>
           </div>
 
           {/* Navigation Links */}
-          <SideNavLink renderIcon={Home} href="#" className="text-sidebar-foreground hover:bg-sidebar-accent !bg-sidebar-background">
+          <SideNavLink renderIcon={Home} href="#" className="text-[#E0E0E0] hover:bg-[#1A1A1A] !bg-[#111111]">
             Home
           </SideNavLink>
           
-          <SideNavMenu renderIcon={Time} title="Recent Chats" className="text-sidebar-foreground !bg-sidebar-background">
+          <SideNavMenu renderIcon={Time} title="Recent Chats" className="text-[#E0E0E0] !bg-[#111111]">
             {sortedSessions.length > 0 ? (
               sortedSessions.map((session) => (
                 <SideNavMenuItem 
                   key={session.id} 
                   href="#"
-                  className={`text-sidebar-foreground hover:text-sidebar-primary hover:bg-sidebar-accent !bg-sidebar-background group ${currentSessionId === session.id ? 'bg-sidebar-accent' : ''}`}
+                  className={`text-[#E0E0E0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] !bg-[#111111] group ${currentSessionId === session.id ? 'bg-[#1A1A1A]' : ''}`}
                   onClick={(e) => {
                     e.preventDefault();
                     onSelectSession(session.id);
@@ -158,7 +158,7 @@ const ChatSidebar = ({ onNewChat, onClose, onSelectSession, currentSessionId }: 
                         renderIcon={OverflowMenuVertical}
                         iconDescription="Chat options"
                         onClick={(e) => e.stopPropagation()}
-                        className="text-sidebar-muted hover:text-sidebar-foreground"
+                        className="text-[#7A7A7A] hover:text-[#E0E0E0]"
                       >
                         <OverflowMenuItem 
                           itemText="Rename"
@@ -179,23 +179,23 @@ const ChatSidebar = ({ onNewChat, onClose, onSelectSession, currentSessionId }: 
                 </SideNavMenuItem>
               ))
             ) : (
-              <div className="px-4 py-2 text-sidebar-muted text-sm">No recent chats</div>
+              <div className="px-4 py-2 text-[#7A7A7A] text-sm">No recent chats</div>
             )}
           </SideNavMenu>
 
-          <SideNavMenu renderIcon={Folder} title="Workspaces" className="text-sidebar-foreground !bg-sidebar-background">
-            <SideNavMenuItem href="#" className="text-sidebar-foreground hover:text-sidebar-primary hover:bg-sidebar-accent !bg-sidebar-background">
+          <SideNavMenu renderIcon={Folder} title="Workspaces" className="text-[#E0E0E0] !bg-[#111111]">
+            <SideNavMenuItem href="#" className="text-[#E0E0E0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] !bg-[#111111]">
               Frontend Development
             </SideNavMenuItem>
-            <SideNavMenuItem href="#" className="text-sidebar-foreground hover:text-sidebar-primary hover:bg-sidebar-accent !bg-sidebar-background">
+            <SideNavMenuItem href="#" className="text-[#E0E0E0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] !bg-[#111111]">
               AI & Machine Learning
             </SideNavMenuItem>
-            <SideNavMenuItem href="#" className="text-sidebar-foreground hover:text-sidebar-primary hover:bg-sidebar-accent !bg-sidebar-background">
+            <SideNavMenuItem href="#" className="text-[#E0E0E0] hover:text-[#FFFFFF] hover:bg-[#1A1A1A] !bg-[#111111]">
               Design & UX
             </SideNavMenuItem>
           </SideNavMenu>
 
-          <SideNavLink renderIcon={Settings} href="#" className="text-sidebar-foreground hover:bg-sidebar-accent !bg-sidebar-background">
+          <SideNavLink renderIcon={Settings} href="#" className="text-[#E0E0E0] hover:bg-[#1A1A1A] !bg-[#111111]">
             Settings
           </SideNavLink>
           
