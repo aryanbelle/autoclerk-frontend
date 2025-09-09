@@ -105,7 +105,7 @@ const ChatSidebar = ({ onNewChat, onClose, onSelectSession, currentSessionId }: 
           <div className="w-8 h-8 rounded bg-[#1A1A1A] flex items-center justify-center">
             <Chat size={20} className="text-[#E0E0E0]" />
           </div>
-          <h1 className="text-lg font-semibold text-[#FFFFFF]">CarbonChat</h1>
+          <h1 className="text-lg font-semibold text-[#FFFFFF]">AutoClerk</h1>
         </div>
         <Button
           kind="ghost"
