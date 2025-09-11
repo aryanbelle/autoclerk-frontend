@@ -58,6 +58,28 @@ export const chatAPI = {
       throw new Error('Failed to get response from AI agent');
     }
   },
+
+  /**
+   * Send a file to the document analysis endpoint
+   */
+  sendFile: async (file: File): Promise<string> => {
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const response = await client.post('/upload-document', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            return response.data.response;
+        } catch (error) {
+            console.error('Error uploading file to document analysis API:', error);
+            throw new Error('Failed to process document');
+        }
+    }
+  
 };
+
 
 export default chatAPI;

@@ -16,6 +16,7 @@ import {
 import { Send as SendIcon, Link as LinkIcon, Sparkle as SparkleIcon, HelpCircle as HelpIcon, ThumbsUp, ThumbsDown, Copy, RotateCcw, MoreHorizontal, ChevronDown } from 'lucide-react';
 import { chatAPI, type ChatMessage as ApiChatMessage } from '@/services/api';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { useChatSession, Message } from '@/contexts/ChatSessionContext';
 
 interface ChatInterfaceProps {
@@ -143,6 +144,29 @@ const ChatInterface = ({ sessionId }: ChatInterfaceProps) => {
     }
   };
 
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setIsLoading(true);
+
+    try {
+      const messageId = (Date.now() + 1).toString();
+      const fullContent = await chatAPI.sendFile(file);
+      startTypingEffect(messageId, fullContent);
+    } catch (error) {
+      console.error('Error handling file upload:', error);
+      setIsLoading(false);
+      const errorMessage: Message = {
+        id: (Date.now() + 2).toString(),
+        content: "I'm sorry, I'm having trouble processing that file. Please try again.",
+        sender: 'ai',
+        timestamp: new Date(),
+      };
+      addMessageToSession(sessionId, errorMessage);
+    }
+  };
+
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -173,13 +197,13 @@ const ChatInterface = ({ sessionId }: ChatInterfaceProps) => {
               </div>
               
               {message.sender === 'user' ? (
-                <div className="max-w-2xl p-4 rounded-lg shadow-md border border-[#2A2A2A]" style={{backgroundColor: '#1A1A1A', color: '#E5E5E5'}}>
+                <div className="max-w-2xl p-4 rounded-xl rounded-br-sm shadow-md border border-[#2A2A2A] bg-primary text-primary-foreground">
                   <p className="whitespace-pre-wrap">{message.content}</p>
                 </div>
               ) : (
                 <div className="max-w-2xl">
-                  <div className="p-4 prose prose-invert bg-[#1A1A1A] border border-[#2A2A2A] rounded-lg shadow-md">
-                    <ReactMarkdown>{message.content}</ReactMarkdown>
+                  <div className="p-4 prose prose-invert border border-[#2A2A2A] rounded-lg shadow-md">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.content}</ReactMarkdown>
                   </div>
                   <div className="flex items-center space-x-2 mt-2 ml-4">
                     <button className="text-[#7A7A7A] hover:text-[#E0E0E0] p-1 rounded hover:bg-[#222222] transition-all duration-300">
@@ -253,6 +277,13 @@ const ChatInterface = ({ sessionId }: ChatInterfaceProps) => {
             </div>
             {/* Input area */}
             <div className="relative bg-[#1d1d1d]">
+              <input
+                type="file"
+                id="file-upload"
+                className="hidden"
+                onChange={handleFileChange}
+                accept=".txt,.pdf,.docx"
+              />
               <textarea
                 id="chat-input"
                 placeholder="Type your idea and we'll build it together..."
@@ -265,6 +296,12 @@ const ChatInterface = ({ sessionId }: ChatInterfaceProps) => {
               
               {/* Action buttons */}
               <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-3">
+                <button
+                  onClick={() => document.getElementById('file-upload')?.click()}
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-[#1A1A1A] text-[#E0E0E0] border border-[#2A2A2A] shadow-lg shadow-[rgba(42,42,42,0.3)] hover:bg-[#2A2A2A] hover:shadow-[rgba(42,42,42,0.5)] transition-all duration-300 ease-in-out"
+                >
+                  <Attachment size={18} />
+                </button>
                 <button
                   onClick={handleSendMessage}
                   disabled={!inputValue.trim() || isLoading}
