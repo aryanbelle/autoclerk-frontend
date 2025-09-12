@@ -1,73 +1,133 @@
-# Welcome to your Lovable project
+# AutoClerk Frontend 🚀
 
-## Project info
+A modern, AI-powered document analysis and automation platform built with React, TypeScript, and cutting-edge UI design.
 
-**URL**: https://lovable.dev/projects/1738a8b9-9389-43bb-8cdb-7bc7d86c64fb
+## ✨ Features
 
-## How can I edit this code?
+### 🎨 **Beautiful UI/UX**
+- **Space-themed design** with elegant gradients and glow effects
+- **Sleek chat interface** with typing animations
+- **Responsive design** that works on all devices
+- **Professional landing page** with smooth interactions
 
-There are several ways of editing your application.
+### 📄 **Advanced Document Analysis**
+- **Multi-format support**: PDF, DOCX, and TXT files
+- **Smart file validation** with size and type checking
+- **Visual file attachment** with drag-and-drop interface
+- **Real-time document processing** with AI-powered analysis
 
-**Use Lovable**
+### 💬 **Intelligent Chat System**
+- **Session management** with persistent chat history
+- **Auto-response handling** for landing page prompts
+- **Typing indicators** and smooth message animations
+- **Context-aware conversations** with document integration
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1738a8b9-9389-43bb-8cdb-7bc7d86c64fb) and start prompting.
+### 🎯 **Modern Architecture**
+- **React 18** with TypeScript for type safety
+- **Vite** for lightning-fast development
+- **TailwindCSS** for utility-first styling
+- **Carbon Design System** for professional components
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Tech Stack
 
-**Use your preferred IDE**
+- **Frontend**: React 18, TypeScript, Vite
+- **Styling**: TailwindCSS, Carbon Design System
+- **State Management**: React Context API
+- **Icons**: Lucide React, Carbon Icons
+- **Routing**: React Router DOM
+- **HTTP Client**: Axios
+- **Markdown**: ReactMarkdown with GFM support
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🚀 Getting Started
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Prerequisites
+- Node.js 18+ and npm/yarn
+- Backend server running on `http://localhost:8000`
 
-Follow these steps:
+### Installation
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+```bash
+# Clone the repository
+git clone https://github.com/aryanbelle/autoclerk-frontend.git
+cd autoclerk-frontend
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Install dependencies
+npm install
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Available Scripts
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run preview      # Preview production build
+npm run lint         # Run ESLint
+```
 
-**Use GitHub Codespaces**
+## 📁 Project Structure
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
+src/
+├── components/           # React components
+│   ├── ui/              # Reusable UI components
+│   ├── ChatInterface.tsx # Main chat interface
+│   ├── ChatSidebar.tsx   # Navigation sidebar
+│   ├── LandingPage.tsx   # Welcome screen
+│   └── MainInterface.tsx # App layout
+├── contexts/            # React contexts
+├── hooks/               # Custom React hooks
+├── services/            # API services
+├── lib/                 # Utility functions
+└── pages/               # Route pages
+```
 
-## What technologies are used for this project?
+## 🎨 UI Features
 
-This project is built with:
+### Landing Page
+- **Animated status indicator** with pulsing effects
+- **Gradient backgrounds** with radial glow effects
+- **Smart input area** with document type selector
+- **Suggestion buttons** for quick actions
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Chat Interface
+- **Message bubbles** with proper styling and spacing
+- **File attachment display** with size and type info
+- **Typing indicators** with smooth animations
+- **Action buttons** for message interactions
 
-## How can I deploy this project?
+### Document Analysis
+- **Visual file picker** with validation feedback
+- **Progress indicators** during processing
+- **Rich AI responses** with markdown support
+- **Context preservation** across conversations
 
-Simply open [Lovable](https://lovable.dev/projects/1738a8b9-9389-43bb-8cdb-7bc7d86c64fb) and click on Share -> Publish.
+## 🔧 Configuration
 
-## Can I connect a custom domain to my Lovable project?
+### API Endpoint
+Update the API base URL in `src/services/api.ts`:
 
-Yes, you can!
+```typescript
+const API_BASE_URL = 'http://localhost:8000';
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Styling
+Customize the theme in `src/index.css` and `tailwind.config.ts`
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License.
+
+---
+
+**Built with ❤️ for the future of document automation**
