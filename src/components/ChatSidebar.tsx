@@ -124,9 +124,9 @@ const ChatSidebar = ({ onNewChat, onClose, onSelectSession, currentSessionId }: 
           <div className="p-3">
             <button
               onClick={onNewChat}
-              className="w-full flex items-center gap-2 px-4 py-2 bg-[hsl(215,100%,50%)] hover:bg-[hsl(215,100%,45%)] border border-[hsl(215,100%,60%)] rounded-md text-white shadow-sm hover:shadow-md transition-all duration-200 ease-in-out group"
+              className="w-full flex items-center justify-start gap-3 px-4 py-2.5 bg-[hsl(215,100%,50%)] hover:bg-[hsl(215,100%,45%)] rounded-lg text-white shadow-sm hover:shadow-md transition-all duration-200 ease-in-out"
             >
-              <Add size={16} className="text-white/80 group-hover:text-white transition-colors" />
+              <Add size={18} className="text-white" />
               <span className="text-sm font-medium">New Chat</span>
             </button>
           </div>

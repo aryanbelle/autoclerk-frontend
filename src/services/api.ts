@@ -42,22 +42,6 @@ export const chatAPI = {
     }
   },
 
-  /**
-   * Send a message to the agent endpoint (for future use)
-   */
-  sendAgentMessage: async (prompt: string, history: ChatMessage[] = []): Promise<string> => {
-    try {
-      const response = await apiClient.post<ChatResponse>('/agent', {
-        prompt,
-        history,
-      });
-      
-      return response.data.response;
-    } catch (error) {
-      console.error('Error sending message to agent API:', error);
-      throw new Error('Failed to get response from AI agent');
-    }
-  },
 
   /**
    * Send a file to the document analysis endpoint

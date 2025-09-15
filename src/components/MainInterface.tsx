@@ -14,27 +14,39 @@ const MainInterface = () => {
     isNewBrowserSession,
     setCurrentSessionId
   } = useChatSession();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State for sidebar visibility
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [currentView, setCurrentView] = useState<'landing' | 'chat'>('landing');
 
-  // Determine if we should show landing page or chat interface
-  const currentView = currentSessionId && !isNewBrowserSession ? 'chat' : 'landing';
+  // Determine initial view
+  useEffect(() => {
+    if (currentSessionId && !isNewBrowserSession) {
+      setCurrentView('chat');
+    } else {
+      setCurrentView('landing');
+    }
+  }, [currentSessionId, isNewBrowserSession]);
 
   const handleStartChat = (message: string) => {
     createSession(message);
+    setCurrentView('chat');
   };
 
   const handleNewChat = () => {
     createSession();
+    setCurrentView('chat');
   };
 
   const handleSelectSession = (sessionId: string) => {
     setCurrentSessionId(sessionId);
-    setIsSidebarOpen(false); // Close sidebar on mobile after selection
+    setCurrentView('chat');
+    setIsSidebarOpen(false);
   };
+
 
   if (currentView === 'landing') {
     return <LandingPage onStartChat={handleStartChat} />;
   }
+  
   
   const currentSession = getCurrentSession();
 
